@@ -1,13 +1,18 @@
-import { Button } from "./_components/ui/button";
+import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-const Home = () => {
-	return (
-		<div>
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button className="mt-4">Click Me</Button>
-      
-		</div>
-	);
+const Home = async () => {
+  const { userId } = auth();
+  if (!userId) {
+    // Redirect to login page if user is not authenticated
+    redirect("/login");
+  }
+  return (
+    <div className="flex h-full items-center justify-center">
+      <UserButton />
+    </div>
+  );
 };
 
 export default Home;
