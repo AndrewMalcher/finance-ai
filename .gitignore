@@ -13,6 +13,9 @@
 /.next/
 /out/
 
+# passwords
+.env
+
 # production
 /build
 
