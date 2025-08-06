@@ -1,24 +1,41 @@
 import Image from "next/image";
+import { Button } from "../_components/ui/button";
+import { LogInIcon } from "lucide-react";
 
 const LoginPage = () => {
-    return (
-        <div className="grid grid-cols-2 h-full">   
-        {/* ESQUERDA */}
-        <div>
-            <Image src="/logo.png" alt="Logo Finance AI" width={173} height={39} />
-        <h1>
-        Bem-vindo
-        </h1>
-        <p>
-            A Finance AI é uma plataforma de gestão financeira que utiliza IA para monitorar suas movimentações, e oferecer insights personalizados, facilitando o controle do seu orçamento.
+  return (
+    <div className="grid h-full grid-cols-2">
+      {/* ESQUERDA */}
+      <div className="flex h-full max-w-[550px] flex-col justify-center p-8">
+        <Image
+          src="/logo.png"
+          alt="Logo Finance AI"
+          width={173}
+          height={39}
+          className="mb-8"
+        />
+        <h1 className="mb-3 text-4xl font-bold">Bem-vindo</h1>
+        <p className="mb-4 mt-4 text-muted-foreground">
+          A Finance AI é uma plataforma de gestão financeira que utiliza IA para
+          monitorar suas movimentações, e oferecer insights personalizados,
+          facilitando o controle do seu orçamento.
         </p>
-        </div>
-        {/* DIREITA */}
-            <div className="relative h-full w-full">
-                <Image src="/login.png" alt="Faça Login" fill className="object-cover" />
-            </div>
-        </div>
-    );
-}
- 
+        <Button variant="outline">
+          <LogInIcon className="mr-2" />
+          Login com Google
+        </Button>
+      </div>
+      {/* DIREITA */}
+      <div className="relative h-full w-full">
+        <Image
+          src="/login.png"
+          alt="Faça Login"
+          fill
+          className="object-cover"
+        />
+      </div>
+    </div>
+  );
+};
+
 export default LoginPage;
