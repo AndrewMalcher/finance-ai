@@ -1,23 +1,24 @@
+import { ArrowDownUpIcon } from "lucide-react";
 import { Button } from "../_components/ui/button";
 
 import { db } from "../_lib/prisma";
 
+import { DataTable } from "../_components/ui/data-table";
+import { transactionsColumns } from "./_columns";
+
 const TransactionsPage = async () => {
   const transactions = await db.transaction.findMany({});
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Transactions</h1>
-      <Button className="mt-4">Transactions</Button>
-
-      {transactions.map((transaction) => (
-        <div key={transaction.id} className="border-b p-4">
-          <p className="font-semibold">{transaction.name}</p>
-          <p className="text-sm text-gray-500">
-            {transaction.type} - {transaction.category}
-          </p>
-          <p className="text-lg font-bold">{transaction.amount.toString()}</p>
-        </div>
-      ))}
+    <div className="space-y-6 p-6">
+      {/* TITULO E BOTÃO */}
+      <div className="flex w-full items-center justify-between p-6">
+        <h1 className="text-2xl font-bold">Transações</h1>
+        <Button className="mt-4 rounded-full">
+          Adicionar Transação
+          <ArrowDownUpIcon className="ml-1" />
+        </Button>
+      </div>
+      <DataTable columns={transactionsColumns} data={transactions} />
     </div>
   );
 };
