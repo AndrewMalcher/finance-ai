@@ -17,9 +17,9 @@ model Transaction {
   id            String              @id @default(uuid())
   name          String
   type          TransactionType
-  category      TransactionCategory
-  paymentMethod PaymentMethod
   amount        Decimal             @db.Decimal(10, 2)
+  category      TransactionCategory
+  paymentMethod TransactionPaymentMethod
   date          DateTime
   createdAt     DateTime            @default(now())
   updatedAt     DateTime            @updatedAt
@@ -28,30 +28,28 @@ model Transaction {
 
 enum TransactionType {
   DEPOSIT
-  INVESTMENT
   EXPENSE
+  INVESTMENT
 }
 
 enum TransactionCategory {
-  FOOD
-  RENT
-  UTILITIES
-  ENTERTAINMENT
+  HOUSING
   TRANSPORTATION
-  HEALTHCARE
-  EDUCATION
-  SHOPPING
+  FOOD
+  ENTERTAINMENT
+  HEALTH
+  UTILITY
   SALARY
-  INVESTMENT
+  EDUCATION
   OTHER
 }
 
-enum PaymentMethod {
+enum TransactionPaymentMethod {
   CREDIT_CARD
   DEBIT_CARD
-  CASH
   BANK_TRANSFER
-  DIGITAL_WALLET
+  BANK_SLIP
+  CASH
   PIX
   OTHER
 }
